@@ -12,7 +12,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright (C) 2008  Nick Redshaw
+#    Copyright (C) 2008 - 2015  Nick Redshaw
 #
 import pygame, sys, os, math, random
 from math import *
