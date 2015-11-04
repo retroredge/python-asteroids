@@ -30,3 +30,7 @@ Collision Detection
 ----
 If a bounding box collision occurs between the sprites then extra checks are made to determine if there are any intersections 
 between line segments that make up each sprite. The intersecting line checks can be found in the geometry.py source file.
+
+Pygame page
+----
+The Pygame project page can be found [here](http://pygame.org/project/977/)
