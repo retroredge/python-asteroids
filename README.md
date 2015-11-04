@@ -33,4 +33,12 @@ between line segments that make up each sprite. The intersecting line checks can
 
 Pygame page
 ----
-The Pygame project page can be found [here](http://pygame.org/project/977/)
+The Pygame project page can be found [here](http://pygame.org/project/977/).
+
+Python and Pygame setup on OSX
+----
+```
+brew install python
+pip install --upgrade pip setuptools
+pip install hg+http://bitbucket.org/pygame/pygame
+```
