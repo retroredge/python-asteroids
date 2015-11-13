@@ -31,17 +31,17 @@ class VectorSprite:
         self.ttl = 25        
 
     # rotate each x,y coord by the angle, then translate it to the x,y position
-    def rotateAndTransform(self):
-        newPointList = [self.rotatePoint(point) for point in self.pointlist]
-        self.transformedPointlist = [self.translatePoint(point) for point in newPointList]
+    def rotate_and_transform(self):
+        newPointList = [self.rotate_point(point) for point in self.pointlist]
+        self.transformedPointlist = [self.translate_point(point) for point in newPointList]
                 
     # draw the sprite            
     def draw(self):
-        self.rotateAndTransform()
+        self.rotate_and_transform()
         return self.transformedPointlist 
                 
     # translate each point to the current x, y position     
-    def translatePoint(self, point):                
+    def translate_point(self, point):
         newPoint = []
         newPoint.append(point[0] + self.position.x)
         newPoint.append(point[1] + self.position.y)        
@@ -55,7 +55,7 @@ class VectorSprite:
         self.angle = self.angle + self.vAngle;                        
 
     # Rotate a point by the given angle
-    def rotatePoint(self, point):
+    def rotate_point(self, point):
         newPoint = []
         cosVal = math.cos(radians(self.angle))
         sinVal = math.sin(radians(self.angle))
@@ -83,7 +83,7 @@ class VectorSprite:
 
     # Check each line from pointlist1 for intersection with
     # the lines in pointlist2
-    def checkPolygonCollision(self, target):                
+    def check_polygon_collision(self, target):
         for i in range(0, len(self.transformedPointlist)):
             for j in range(0, len(target.transformedPointlist)):                    
                 p1 = self.transformedPointlist[i-1]
@@ -91,7 +91,7 @@ class VectorSprite:
                 p3 = target.transformedPointlist[j-1]
                 p4 = target.transformedPointlist[j]                           
                 p = calculate_intersect_point(p1, p2, p3, p4)
-                if (p != None):
+                if p != None:
                     return p                
         
         return None
@@ -109,7 +109,7 @@ class Point(VectorSprite):
         
     def move(self):
         self.ttl -= 1
-        if (self.ttl <= 0): 
-            self.stage.removeSprite(self)
+        if self.ttl <= 0:
+            self.stage.remove_sprite(self)
  
         VectorSprite.move(self)

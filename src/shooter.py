@@ -28,15 +28,15 @@ class Shooter(VectorSprite):
         self.bullets = []        
         self.stage = stage
     
-    def fireBullet(self, heading, ttl, velocity):
+    def fire_bullet(self, heading, ttl, velocity):
         if (len(self.bullets) < self.maxBullets):                          
             position = Vector2d(self.position.x, self.position.y)
             newBullet = Bullet(position, heading, self, ttl, velocity, self.stage)
             self.bullets.append(newBullet)
-            self.stage.addSprite(newBullet)
+            self.stage.add_sprite(newBullet)
             return True
 
-    def bulletCollision(self, target):
+    def bullet_collision(self, target):
         collisionDetected = False
         for bullet in self.bullets:
             if bullet.ttl > 0 and target.collidesWith(bullet):

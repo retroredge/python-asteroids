@@ -61,33 +61,33 @@ class Ship(Shooter):
                     
         return self.transformedPointlist
     
-    def rotateLeft(self):
+    def rotate_left(self):
         self.angle += self.turnAngle
         self.thrustJet.angle += self.turnAngle
         
-    def rotateRight(self):
+    def rotate_right(self):
         self.angle -= self.turnAngle
         self.thrustJet.angle -= self.turnAngle
         
-    def increaseThrust(self):
-        playSoundContinuous("thrust")
+    def increase_thrust(self):
+        play_sound_continuous("thrust")
         if math.hypot(self.heading.x, self.heading.y) > self.maxVelocity:
             return
         
         dx = self.acceleration * math.sin(radians(self.angle)) * -1
         dy = self.acceleration * math.cos(radians(self.angle)) * -1                
-        self.changeVelocity(dx, dy);
+        self.change_velocity(dx, dy);
     
-    def decreaseThrust(self):
-        stopSound("thrust")
+    def decrease_thrust(self):
+        stop_sound("thrust")
         if (self.heading.x == 0 and self.heading.y == 0):
             return;
         
         dx = self.heading.x * self.decelaration;
         dy = self.heading.y * self.decelaration;
-        self.changeVelocity(dx, dy);
+        self.change_velocity(dx, dy);
     
-    def changeVelocity(self, dx, dy):
+    def change_velocity(self, dx, dy):
         self.heading.x += dx;
         self.heading.y += dy;
         self.thrustJet.heading.x += dx
@@ -95,30 +95,30 @@ class Ship(Shooter):
         
     def move(self):
         VectorSprite.move(self)          
-        self.decreaseThrust()                    
+        self.decrease_thrust()
 
     # Break the shape of the ship down into several lines
     # Ship shape - [(0, -10), (6, 10), (3, 7), (-3, 7), (-6, 10)]    
     def explode(self):                                
         pointlist = [(0,-10),(6,10)]
-        self.addShipDebris(pointlist)        
+        self.add_ship_debris(pointlist)
         pointlist = [(6,10), (3,7)]
-        self.addShipDebris(pointlist)
+        self.add_ship_debris(pointlist)
         pointlist = [(3,7), (-3,7)]
-        self.addShipDebris(pointlist)
+        self.add_ship_debris(pointlist)
         pointlist = [(-3,7), (-6,10)]
-        self.addShipDebris(pointlist)
+        self.add_ship_debris(pointlist)
         pointlist = [(-6,10), (0,-10)]
-        self.addShipDebris(pointlist)
+        self.add_ship_debris(pointlist)
         
     # Create a peice of ship debris
-    def addShipDebris(self, pointlist):
+    def add_ship_debris(self, pointlist):
         heading = Vector2d(0, 0)
         position = Vector2d(self.position.x, self.position.y)
         debris = VectorSprite(position, heading, pointlist, self.angle)
 
         # Add debris to the stage
-        self.stage.addSprite(debris)  
+        self.stage.add_sprite(debris)
                 
         # Calc a velocity moving away from the ship's center        
         centerX = debris.boundingRect.centerx
@@ -130,15 +130,15 @@ class Ship(Shooter):
         self.shipDebrisList.append(debris)
 
     # Set the bullet velocity and create the bullet
-    def fireBullet(self):
+    def fire_bullet(self):
         if self.inHyperSpace == False:
             vx = self.bulletVelocity * math.sin(radians(self.angle)) * -1
             vy = self.bulletVelocity * math.cos(radians(self.angle)) * -1
             heading = Vector2d(vx, vy)
-            Shooter.fireBullet(self, heading, self.bulletTtl, self.bulletVelocity)
-            playSound("fire")
+            Shooter.fire_bullet(self, heading, self.bulletTtl, self.bulletVelocity)
+            play_sound("fire")
             
-    def enterHyperSpace(self):
+    def enter_hyper_space(self):
       if not self.inHyperSpace:
           self.inHyperSpace = True
           self.hyperSpaceTtl = 100

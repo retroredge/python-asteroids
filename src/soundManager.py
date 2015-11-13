@@ -20,7 +20,7 @@ from pygame.locals import *
 
 sounds = {}
 
-def initSoundManager():
+def init_sound_manager():
     pygame.mixer.init()
     sounds["fire"] = pygame.mixer.Sound("../res/FIRE.WAV")
     sounds["explode1"] = pygame.mixer.Sound("../res/EXPLODE1.WAV")
@@ -32,11 +32,11 @@ def initSoundManager():
     sounds["sfire"] = pygame.mixer.Sound("../res/SFIRE.WAV")
     sounds["extralife"] = pygame.mixer.Sound("../res/LIFE.WAV")
 
-def playSound(soundName):
+def play_sound(soundName):
     channel = sounds[soundName].play()
 
-def playSoundContinuous(soundName):
+def play_sound_continuous(soundName):
     channel = sounds[soundName].play(-1)
 
-def stopSound(soundName):    
+def stop_sound(soundName):
     channel = sounds[soundName].stop()

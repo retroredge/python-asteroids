@@ -51,12 +51,12 @@ class Rock(VectorSprite):
             heading.y = 0.1
                         
         self.rockType = rockType  
-        pointlist = self.createPointList()
+        pointlist = self.create_point_list()
         newPointList = [self.scale(point, scale) for point in pointlist]        
         VectorSprite.__init__(self, position, heading, newPointList)
 
     # Create different rock type pointlists    
-    def createPointList(self):
+    def create_point_list(self):
         
         if (Rock.rockShape == 1):
             pointlist = [(-4,-12), (6,-12), (13, -4), (13, 5), (6, 13), (0,13), (0,4), (-8,13), (-15, 4), (-7,1), (-15,-3)]
@@ -118,12 +118,12 @@ class Saucer(Shooter):
         self.saucerType = saucerType
         self.ship = ship
         self.scoreValue = self.scores[saucerType]
-        stopSound("ssaucer")
-        stopSound("lsaucer")            
+        stop_sound("ssaucer")
+        stop_sound("lsaucer")
         if saucerType == self.largeSaucerType:            
-            playSoundContinuous("lsaucer")            
+            play_sound_continuous("lsaucer")
         else:            
-            playSoundContinuous("ssaucer")
+            play_sound_continuous("ssaucer")
         self.laps = 0
         self.lastx = 0
         
@@ -139,7 +139,7 @@ class Saucer(Shooter):
         else:
             self.heading.y = 0
         
-        self.fireBullet()
+        self.fire_bullet()
         
         # have we lapped?        
         if self.lastx > self.position.x:
@@ -149,13 +149,13 @@ class Saucer(Shooter):
             self.lastx = self.position.x
                 
     # Set the bullet velocity and create the bullet
-    def fireBullet(self):
+    def fire_bullet(self):
         if self.ship is not None:            
             dx = self.ship.position.x - self.position.x
             dy = self.ship.position.y - self.position.y
             mag = math.sqrt(dx*dx + dy*dy);
             heading = Vector2d(self.bulletVelocity * (dx/mag), self.bulletVelocity * (dy/mag))
             position = Vector2d(self.position.x, self.position.y)          
-            shotFired = Shooter.fireBullet(self, heading, self.bulletTtl[self.saucerType], self.bulletVelocity)
+            shotFired = Shooter.fire_bullet(self, heading, self.bulletTtl[self.saucerType], self.bulletVelocity)
             if shotFired:
-                playSound("sfire")
+                play_sound("sfire")

@@ -41,20 +41,20 @@ class Stage:
         self.showBoundingBoxes = False
         
     # Add sprite to list then draw it as a easy way to get the bounding rect    
-    def addSprite(self, sprite):    
+    def add_sprite(self, sprite):
         self.spriteList.append(sprite)    
         sprite.boundingRect = pygame.draw.aalines(self.screen, sprite.color, True, sprite.draw())
                 
-    def removeSprite(self, sprite):            
+    def remove_sprite(self, sprite):
         self.spriteList.remove(sprite)
         
-    def drawSprites(self):
+    def draw_sprites(self):
         for sprite in self.spriteList:
             sprite.boundingRect = pygame.draw.aalines(self.screen, sprite.color, True, sprite.draw())
             if self.showBoundingBoxes == True:
                 pygame.draw.rect(self.screen, (255,255,255), sprite.boundingRect, 1)        
 
-    def moveSprites(self):
+    def move_sprites(self):
         for sprite in self.spriteList:
             sprite.move()
      

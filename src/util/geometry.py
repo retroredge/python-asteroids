@@ -33,7 +33,7 @@ from pygame import Rect
 def calculate_gradient(p1, p2):
     
     # Ensure that the line is not vertical
-    if (p1[0] != p2[0]):
+    if p1[0] != p2[0]:
         m = (p1[1] - p2[1]) / (p1[0] - p2[0])
         return m
     else:
@@ -41,7 +41,7 @@ def calculate_gradient(p1, p2):
 
 # Calc the point 'b' where line crosses the Y axis
 def calculate_y_axis_intersect(p, m):
-    return  p[1] - (m * p[0])
+    return p[1] - (m * p[0])
 
 # Calc the point where two infinitely long lines (p1 to p2 and p3 to p4) intersect.
 # Handle parallel lines and vertical lines (the later has infinate 'm').
@@ -53,11 +53,11 @@ def get_intersect_point(p1, p2, p3, p4):
     m2 = calculate_gradient(p3, p4)
         
     # See if the the lines are parallel
-    if (m1 != m2):
+    if m1 != m2:
         # Not parallel
         
         # See if either line is vertical
-        if (m1 is not None and m2 is not None):
+        if m1 is not None and m2 is not None:
             # Neither line vertical            
             b1 = calculate_y_axis_intersect(p1, m1)
             b2 = calculate_y_axis_intersect(p3, m2)
@@ -65,19 +65,19 @@ def get_intersect_point(p1, p2, p3, p4):
             y = (m1 * x) + b1            
         else:
             # Line 1 is vertical so use line 2's values
-            if (m1 is None):
+            if m1 is None:
                 b2 = calculate_y_axis_intersect(p3, m2)
                 x = p1[0]
                 y = (m2 * x) + b2
             # Line 2 is vertical so use line 1's values                
-            elif (m2 is None):
+            elif m2 is None:
                 b1 = calculate_y_axis_intersect(p1, m1)
                 x = p3[0]
                 y = (m1 * x) + b1            
             else:
-                assert false
+                assert False
                 
-        return ((x,y),)
+        return (x,y),
     else:
         # Parallel lines with same 'b' value must be the same line so they intersect 
         # everywhere in this case we return the start and end points of both lines
