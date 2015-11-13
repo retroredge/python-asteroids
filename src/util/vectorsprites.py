@@ -52,7 +52,7 @@ class VectorSprite:
         # Apply velocity        
         self.position.x = self.position.x + self.heading.x
         self.position.y = self.position.y + self.heading.y
-        self.angle = self.angle + self.vAngle;                        
+        self.angle = self.angle + self.vAngle
 
     # Rotate a point by the given angle
     def rotate_point(self, point):
@@ -81,8 +81,7 @@ class VectorSprite:
         else:
             return False                
 
-    # Check each line from pointlist1 for intersection with
-    # the lines in pointlist2
+    # Check each line from pointlist1 for intersection with the lines in pointlist2
     def check_polygon_collision(self, target):
         for i in range(0, len(self.transformedPointlist)):
             for j in range(0, len(target.transformedPointlist)):                    
@@ -91,7 +90,7 @@ class VectorSprite:
                 p3 = target.transformedPointlist[j-1]
                 p4 = target.transformedPointlist[j]                           
                 p = calculate_intersect_point(p1, p2, p3, p4)
-                if p != None:
+                if p is not None:
                     return p                
         
         return None

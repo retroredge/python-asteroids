@@ -76,20 +76,20 @@ class Ship(Shooter):
         
         dx = self.acceleration * math.sin(radians(self.angle)) * -1
         dy = self.acceleration * math.cos(radians(self.angle)) * -1                
-        self.change_velocity(dx, dy);
+        self.change_velocity(dx, dy)
     
     def decrease_thrust(self):
         stop_sound("thrust")
         if (self.heading.x == 0 and self.heading.y == 0):
-            return;
+            return
         
-        dx = self.heading.x * self.decelaration;
-        dy = self.heading.y * self.decelaration;
-        self.change_velocity(dx, dy);
+        dx = self.heading.x * self.decelaration
+        dy = self.heading.y * self.decelaration
+        self.change_velocity(dx, dy)
     
     def change_velocity(self, dx, dy):
-        self.heading.x += dx;
-        self.heading.y += dy;
+        self.heading.x += dx
+        self.heading.y += dy
         self.thrustJet.heading.x += dx
         self.thrustJet.heading.y += dy
         

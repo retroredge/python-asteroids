@@ -157,7 +157,7 @@ class Asteroids:
             self.stage.add_sprite(self.saucer)
 
     def exploding(self):
-        self.explodingCount += 1;
+        self.explodingCount += 1
         if self.explodingCount > self.explodingTtl:
             self.gameState = 'playing'
             [self.stage.spriteList.remove(debris) for debris in self.ship.shipDebrisList]                                        
@@ -311,7 +311,8 @@ class Asteroids:
                     self.score += 100
                 else:
                     play_sound("explode3")
-                    self.score += 200                    
+                    self.score += 200
+                    newRockType = None
                 
                 if rock.rockType != Rock.smallRockType:
                     # new rocks

@@ -57,7 +57,9 @@ class Rock(VectorSprite):
 
     # Create different rock type pointlists    
     def create_point_list(self):
-        
+
+        pointlist = []
+
         if (Rock.rockShape == 1):
             pointlist = [(-4,-12), (6,-12), (13, -4), (13, 5), (6, 13), (0,13), (0,4), (-8,13), (-15, 4), (-7,1), (-15,-3)]
  
@@ -153,7 +155,7 @@ class Saucer(Shooter):
         if self.ship is not None:            
             dx = self.ship.position.x - self.position.x
             dy = self.ship.position.y - self.position.y
-            mag = math.sqrt(dx*dx + dy*dy);
+            mag = math.sqrt(dx*dx + dy*dy)
             heading = Vector2d(self.bulletVelocity * (dx/mag), self.bulletVelocity * (dy/mag))
             position = Vector2d(self.position.x, self.position.y)          
             shotFired = Shooter.fire_bullet(self, heading, self.bulletTtl[self.saucerType], self.bulletVelocity)
