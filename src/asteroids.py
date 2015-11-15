@@ -36,7 +36,7 @@ class Asteroids:
         self.frameAdvance = False   
         self.gameState = "attract_mode"     
         self.rockList = []
-        self.create_rocks(3)
+        self.create_rocks(8)
         self.saucer = None
         self.secondsCount = 1
         self.score = 0                
@@ -316,7 +316,7 @@ class Asteroids:
                 
                 if rock.rockType != Rock.smallRockType:
                     # new rocks
-                    for _ in range(0,2):  
+                    for _ in range(0, 2):
                         position = Vector2d(rock.position.x, rock.position.y)                  
                         newRock = Rock(self.stage, position, newRockType)
                         self.stage.add_sprite(newRock)
