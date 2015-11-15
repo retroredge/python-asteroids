@@ -3,6 +3,8 @@ Pythentic Asteroids
 
 A [Python](https://www.python.org/) / [Pygame](http://www.pygame.org/) version of Atari's 1979 classic Asteroids arcade game. 
 
+![Title screen](/../gh-pages/images/title-screen.png?raw=true "Title screen")
+
 Controls
 ----
 - Start game : Enter   
