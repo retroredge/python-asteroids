@@ -12,8 +12,6 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright (C) 2008 - 2015  Nick Redshaw
-#
 
 import pygame, sys, os
 from pygame.locals import *
@@ -24,11 +22,14 @@ class Stage:
     def __init__(self, caption, dimensions=None):
         pygame.init()
         
-        # If no screen size is provided pick the first available mode        
+        # Try for 1024 x 768 like the original game otherwise pick highest resolution available
         if dimensions == None:
-            index = len(pygame.display.list_modes())/2
-            # print(pygame.display.list_modes())
-            dimensions = pygame.display.list_modes()[index]
+            modes = pygame.display.list_modes()
+            print(modes)
+            if (1024, 768) in modes:
+                dimensions = (1024, 768)
+            else:
+                dimensions = modes[0]
 
         pygame.display.set_mode(dimensions, FULLSCREEN)
         pygame.mouse.set_visible(False)
@@ -52,7 +53,7 @@ class Stage:
         for sprite in self.spriteList:
             sprite.boundingRect = pygame.draw.aalines(self.screen, sprite.color, True, sprite.draw())
             if self.showBoundingBoxes == True:
-                pygame.draw.rect(self.screen, (255,255,255), sprite.boundingRect, 1)        
+                pygame.draw.rect(self.screen, (255, 255, 255), sprite.boundingRect, 1)        
 
     def move_sprites(self):
         for sprite in self.spriteList:

@@ -1,6 +1,4 @@
 #
-#    Copyright (C) 2008  Nick Redshaw
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -14,12 +12,11 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright (C) 2008 - 2015  Nick Redshaw
-#
 
 import random
 from util.vectorsprites import *
 from util import *
+from soundManager import *
 
 class Shooter(VectorSprite):    
     
@@ -28,13 +25,13 @@ class Shooter(VectorSprite):
         self.bullets = []        
         self.stage = stage
     
-    def fire_bullet(self, heading, ttl, velocity):
+    def fire_bullet(self, heading, ttl, velocity, shoot_sound):
         if (len(self.bullets) < self.maxBullets):                          
             position = Vector2d(self.position.x, self.position.y)
             newBullet = Bullet(position, heading, self, ttl, velocity, self.stage)
             self.bullets.append(newBullet)
             self.stage.add_sprite(newBullet)
-            return True
+            play_sound(shoot_sound)
 
     def bullet_collision(self, target):
         collisionDetected = False

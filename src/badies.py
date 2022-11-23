@@ -1,4 +1,3 @@
-#    Copyright (C) 2008  Nick Redshaw
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -12,8 +11,6 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#    Copyright (C) 2008 - 2015  Nick Redshaw
 #
 
 import random
@@ -97,7 +94,7 @@ class Debris(Point):
         r -= 5
         g -= 5
         b -= 5
-        self.color = (r,g,b)
+        self.color = (r, g, b)
 
 # Flying saucer, shoots at player
 class Saucer(Shooter):
@@ -158,6 +155,4 @@ class Saucer(Shooter):
             mag = math.sqrt(dx*dx + dy*dy)
             heading = Vector2d(self.bulletVelocity * (dx/mag), self.bulletVelocity * (dy/mag))
             position = Vector2d(self.position.x, self.position.y)          
-            shotFired = Shooter.fire_bullet(self, heading, self.bulletTtl[self.saucerType], self.bulletVelocity)
-            if shotFired:
-                play_sound("sfire")
+            Shooter.fire_bullet(self, heading, self.bulletTtl[self.saucerType], self.bulletVelocity, "sfire")

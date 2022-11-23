@@ -1,6 +1,4 @@
 #
-#    Copyright (C) 2008  Nick Redshaw
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -13,8 +11,6 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#    Copyright (C) 2008 - 2015 Nick Redshaw
 #
 
 from __future__ import division
@@ -140,7 +136,7 @@ def calculate_intersect_point(p1, p2, p3, p4):
             except:
                 # sometimes the value in a point are too large for PyGame's Rect class
                 str = "point was invalid  ", point                
-                print str
+                print (str)
                 
         # This is the case where the infinitely long lines crossed but the line segments didn't
         return None            
@@ -188,4 +184,4 @@ if __name__ == "__main__":
     assert None != calculate_intersect_point(p7, p8, p9, p10), "line 4 line 5 should intersect"
     assert None != calculate_intersect_point(p9, p10, p7, p8), "line 5 line 4 should intersect"
     
-    print "\nSUCCESS! All asserts passed for doLinesIntersect"
+    print ("\nSUCCESS! All asserts passed for doLinesIntersect")

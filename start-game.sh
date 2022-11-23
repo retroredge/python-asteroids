@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 cd src
-./asteroids.py
+python3 asteroids.py

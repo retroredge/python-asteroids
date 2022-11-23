@@ -5,6 +5,20 @@ A [Python](https://www.python.org/) / [Pygame](http://www.pygame.org/) version o
 
 ![Title screen](/../gh-pages/images/title-screen.png?raw=true "Title screen")
 
+To Run
+----
+
+```
+./start-game.sh
+```
+
+or 
+
+```
+cd src
+python3 asteroids.py
+```
+
 Controls
 ----
 - Start game : Enter   
@@ -14,7 +28,7 @@ Controls
 - Fire : Space or M
 - Hyperspace : H
 - Pause : P
-- Frame advance whilst paused : O 
+- Frame advance whilst paused : O
 - Quit : Esc
 
 Features
@@ -35,14 +49,12 @@ between line segments that make up each sprite. The intersecting line checks can
 
 Pygame page
 ----
-The Pygame project page can be found [here](http://pygame.org/project/977/).
+The Pygame project page can be found [here](http://pygame.org/project/977/)
 
-Python and Pygame setup on OSX
+Pygame setup on OSX
 ----
 ```
-brew install python
-pip install --upgrade pip setuptools
-pip install hg+http://bitbucket.org/pygame/pygame
+python3 -m pip install pygame
 ```
 
 Licence

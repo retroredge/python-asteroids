@@ -1,6 +1,4 @@
 #
-#    Copyright (C) 2008  Nick Redshaw
-#
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
 #    the Free Software Foundation, either version 3 of the License, or
@@ -13,8 +11,6 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-#    Copyright (C) 2008 - 2015  Nick Redshaw
 #
 
 import random
@@ -52,8 +48,8 @@ class Ship(Shooter):
                 self.hyperSpaceTtl -= 1                
                 if self.hyperSpaceTtl == 0:
                     self.inHyperSpace = False
-                    self.color = (255,255,255)
-                    self.thrustJet.color = (255,255,255)
+                    self.color = (255, 255, 255)
+                    self.thrustJet.color = (255, 255, 255)
                     self.position.x = random.randrange(0, self.stage.width)
                     self.position.y = random.randrange(0, self.stage.height)                    
                     position = Vector2d(self.position.x, self.position.y)        
@@ -135,15 +131,14 @@ class Ship(Shooter):
             vx = self.bulletVelocity * math.sin(radians(self.angle)) * -1
             vy = self.bulletVelocity * math.cos(radians(self.angle)) * -1
             heading = Vector2d(vx, vy)
-            Shooter.fire_bullet(self, heading, self.bulletTtl, self.bulletVelocity)
-            play_sound("fire")
+            Shooter.fire_bullet(self, heading, self.bulletTtl, self.bulletVelocity, "fire")
             
     def enter_hyper_space(self):
       if not self.inHyperSpace:
           self.inHyperSpace = True
           self.hyperSpaceTtl = 100
-          self.color = (0,0,0)
-          self.thrustJet.color = (0,0,0)
+          self.color = (0, 0, 0)
+          self.thrustJet.color = (0, 0, 0)
                         
 # Exhaust jet when ship is accelerating
 class ThrustJet(VectorSprite):
@@ -158,9 +153,9 @@ class ThrustJet(VectorSprite):
         
     def draw(self):
         if self.accelerating and self.ship.inHyperSpace == False:
-            self.color = (255,255,255)         
+            self.color = (255, 255, 255)         
         else:
-            self.color = (0,0,0)
+            self.color = (0, 0, 0)
             
         VectorSprite.draw(self)
         return self.transformedPointlist

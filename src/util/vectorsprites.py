@@ -12,8 +12,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright (C) 2008 - 2015  Nick Redshaw
-#
+
 import pygame, sys, os, math, random
 from math import *
 from util.vector2d import *            
@@ -21,7 +20,7 @@ from util.geometry import *
 
 class VectorSprite:    
     
-    def __init__(self, position, heading, pointlist, angle=0, color=(255,255,255)):
+    def __init__(self, position, heading, pointlist, angle=0, color=(255, 255, 255)):
         self.position = position
         self.heading = heading        
         self.angle = angle

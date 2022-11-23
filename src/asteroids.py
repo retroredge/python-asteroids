@@ -13,8 +13,6 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-#    Copyright (C) 2008 - 2015  Nick Redshaw
-#
 
 import pygame, sys, os, random
 from pygame.locals import *
@@ -27,21 +25,19 @@ from soundManager import *
 
 
 class Asteroids:
-    explodingTtl = 180
+    explodingTtl = 256
 
     def __init__(self):
         self.stage = Stage('Pythentic Asteroids')
         self.paused = False
         self.frameAdvance = False
-        self.gameState = "attract_mode"
+        self.gameState = 'attract'
         self.rockList = []
-        self.create_rocks(8)
         self.saucer = None
         self.secondsCount = 1
         self.score = 0
         self.ship = None
         self.lives = 0
-        self.numRocks = 3
         self.nextLife = 10000
         self.fps = 0.0
 
@@ -121,7 +117,7 @@ class Asteroids:
             self.do_saucer_logic()
             self.display_score()
             self.check_score()
-            # self.displayFps()
+            self.display_fps()
 
             # Process keys
             if self.gameState == 'playing':
@@ -136,7 +132,7 @@ class Asteroids:
 
     def playing(self):
         if self.lives == 0:
-            self.gameState = 'attract_mode'
+            self.gameState = 'attract'
         else:
             self.process_keys()
             self.check_collisions()
@@ -159,6 +155,13 @@ class Asteroids:
 
     def exploding(self):
         self.explodingCount += 1
+        for debris in self.ship.shipDebrisList:
+            r, g, b = debris.color
+            r = max(0, r - 1)
+            g = max(0, r - 1)
+            b = max(0, r - 1)
+            debris.color = (r, g, b)
+
         if self.explodingCount > self.explodingTtl:
             self.gameState = 'playing'
             [self.stage.spriteList.remove(debris) for debris in self.ship.shipDebrisList]
@@ -204,9 +207,9 @@ class Asteroids:
         self.stage.screen.blit(scoreText, scoreTextRect)
 
     def display_fps(self):
-        font2 = pygame.font.Font(None, 30)
-        fpsStr = str(self.fps)
-        scoreText = font2.render(fpsStr, True, (255, 255, 255))
+        font2 = pygame.font.Font(None, 15)
+        fpsStr = str(int(self.fps))
+        scoreText = font2.render(fpsStr, True, (128, 128, 128))
         scoreTextRect = scoreText.get_rect(centerx=(self.stage.width / 2), centery=15)
         self.stage.screen.blit(scoreText, scoreTextRect)
 
@@ -234,7 +237,7 @@ class Asteroids:
                         self.ship.fire_bullet()
                     elif event.key == K_h:
                         self.ship.enter_hyper_space()
-                elif self.gameState == 'attract_mode':
+                elif self.gameState == 'attract':
                     # Start a new game
                     if event.key == K_RETURN:
                         self.initialise_game()
@@ -377,8 +380,8 @@ class Asteroids:
 
 
 # Script to run the game
-if not pygame.font: print 'Warning, fonts disabled'
-if not pygame.mixer: print 'Warning, sound disabled'
+if not pygame.font: print ('Warning, fonts disabled')
+if not pygame.mixer: print ('Warning, sound disabled')
 
 init_sound_manager()
 game = Asteroids()
